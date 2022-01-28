@@ -1,46 +1,44 @@
-# Getting Started with Create React App
+# It is a create react app project:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Steps to run the application:
 
-## Available Scripts
+1. `clone the project or unzip the attachment this project(if you are reading it in your editor, you would have already completed step-1)`.
+2. `cd react-coding-test`
+3. `npm install`( I am using Node Version - 14.15.4)
+4. `npm start`
+5. `open[http://localhost:3000/]`
 
-In the project directory, you can run:
+Alternatively, if you are a Docker person, I have provided a very simple Dockerfile. Build and run the docker - Port 3000 is exposed.
 
-### `npm start`
+## Assessment:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Things Covered as a part of this test:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- UI Rules mentioned in the Requirement Document is covered.
+- 3 Reusable Components
+- Included react router to add Site Configuration Page
+- A shared component under components/shared - FeatureFlagSettings - Which can be used in Any routes/pages.
+- Schema folder - which returns raw schema which can be fetched from API using axios (will be updating in future).
 
-### `npm test`
+Additional:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. React-Router - yes, it is not required for this single page UI task. I could visualize the requirement as a module(Feature Flag Module) which can be a part of any big SPAs. So to isolate it from other modules/pages, I created a separate route using react-router dom.
 
-### `npm run build`
+2. components/core - Since the wireframe screenshot in the requirement document mentions Toggle Component, there is no need of creating core, shared components and all. But, yet I had it for the following reasons:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+   - Toggles can be used in any pages (and also any application that follows the common design system)
+   - Instead of making toggle to have nested items inside it, I created two different components,
+     1. Toggle
+     2. NestedList ( which wraps toggle component inside it), so that Toggle can be used anywhere independently.
+     3. If any design system specific to Dataminr exists or in pipeline, separation of components would help creating a UI library for Dataminr.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+3. @types:
+   There will two places where types are specified, one inside the src/ folder and another inside components/ folder.
+   Reason: if the components are to be extracted out of the application layer, there should not be any dependency.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+4. Unit Testing: In progress
+   I usually write unit testing as part of development like TDD but since from the interview perspective, for the quicker completion, I was sharing it without unit tests and will be writing.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+5. State management:
+   For the same reason, why I have included Route, I thought of include Redux for state management, but Redux store's state is something that we need to define based on many factors such as component communication, data model etc, and also timely submission of factor, I made a trade off of not including Redux.
+   And yes, for this requirement, Redux is overkill, provided in future, based on requirement, redux could add value to it.
